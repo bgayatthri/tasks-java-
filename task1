@@ -1,23 +1,21 @@
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.*;
 
-public class AccessElement {
+public class AccessElementFP {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        List<Integer> list = Arrays.asList(10, 20, 30, 40, 50);
+        int index = 2;
 
-        System.out.print("Enter number of elements: ");
-        int n = sc.nextInt();
+        Optional<Integer> element =
+                IntStream.range(0, list.size())
+                         .filter(i -> i == index)
+                         .mapToObj(list::get)
+                         .findFirst();
 
-        int[] arr = new int[n];
-        System.out.println("Enter array elements:");
-        for (int i = 0; i < n; i++)
-            arr[i] = sc.nextInt();
-
-        System.out.print("Enter index: ");
-        int index = sc.nextInt();
-
-        if (index >= 0 && index < n)
-            System.out.println("Element at index " + index + " = " + arr[index]);
-        else
-            System.out.println("Invalid index");
+        element.ifPresentOrElse(
+                e -> System.out.println("Element = " + e),
+                () -> System.out.println("Invalid index")
+        );
     }
 }
+
