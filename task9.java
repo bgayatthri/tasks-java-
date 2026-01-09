@@ -1,0 +1,14 @@
+public int isPalinNum(int input1) {
+    int original = input1;
+    int rev = 0;
+
+    while (input1 > 0) {
+        rev = rev * 10 + input1 % 10;
+        input1 = input1 / 10;
+    }
+
+    if (original == rev)
+        return 2;
+    else
+        return 1;
+}
